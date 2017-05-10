@@ -1,0 +1,65 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Angular Validation | </title>
+    <!-- CSS ===================== -->
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 30px;
+        }
+    </style>
+    <!-- JS ===================== -->
+    <!-- load angular -->
+    <script src="http://code.angularjs.org/1.2.6/angular.js"></script>
+    <script src="js/controllers.js"></script>
+</head>
+
+<body ng-app="validationApp" ng-controller="mainController">
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <!-- PAGE HEADER -->
+            <div class="page-header">
+                <h1>{{ title }}</h1>
+            </div>
+            <!-- FORM -->
+            <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+
+                <!-- EMAIL -->
+                <div class="form-group" ng-class="{'has-error' : userForm.email.$invalid && userForm.email.$dirty}">
+                    <label class="control-label">*Email</label>
+                    <input type="email" name="email" class="form-control" ng-model="user.email" ng-trim="true">
+                    <p ng-show="userForm.email.$invalid && userForm.email.$dirty" class="help-block">Enter a valid email.</p>
+                </div>
+
+                <!-- SUBJECT -->
+                <div class="form-group" ng-class="{'has-error' : userForm.subject.$invalid && userForm.subject.$dirty}">
+                    <label class="control-label">*Subject</label>
+                    <input type="text" name="subject" class="form-control" ng-model="user.subject" required>
+                    <p ng-show="userForm.subject.$invalid && userForm.subject.$dirty" class="help-block">Subject is required.</p>
+                </div>
+
+                <!-- Message Body -->
+                <div class="form-group" ng-class="{'has-error' : userForm.message.$invalid && userForm.message.$dirty}">
+                    <label class="control-label">*Message Body</label>
+                    <textarea class="form-control" name="message" rows="4" cols="50" ng-model="user.message" ng-minlength="4" ng-maxlength="255"></textarea>
+                    <p ng-show="userForm.message.$error.minlength && userForm.message.$dirty" class="help-block">Message must be at least 3 characters.</p>
+                    <p ng-show="userForm.message.$error.maxlength && userForm.message.$dirty" class="help-block">Message must be at most 255 characters.</p>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+                </div>
+
+            </form>
+        </div>
+        <!-- col-sm-8 -->
+    </div>
+    <!-- /container -->
+</body>
+
+</html>
