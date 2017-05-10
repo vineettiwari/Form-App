@@ -29,33 +29,40 @@
             <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
 
                 <!-- EMAIL -->
-                <div class="form-group" ng-class="{'has-error' : userForm.email.$invalid && userForm.email.$dirty}">
+                <div class="form-group" ng-class="{'has-error' : emailError}">
                     <label class="control-label">*Email</label>
-                    <input type="email" name="email" class="form-control" ng-model="user.email" ng-trim="true">
-                    <p ng-show="userForm.email.$invalid && userForm.email.$dirty" class="help-block">Enter a valid email.</p>
+                    <input type="email" name="email" class="form-control" ng-model="user.email" ng-trim="true" required>
+                    <p ng-if="emailError" class="help-block">{{ emailError }}</p>
                 </div>
 
                 <!-- SUBJECT -->
-                <div class="form-group" ng-class="{'has-error' : userForm.subject.$invalid && userForm.subject.$dirty}">
+                <div class="form-group" ng-class="{'has-error' : subjectError}">
                     <label class="control-label">*Subject</label>
                     <input type="text" name="subject" class="form-control" ng-model="user.subject" required>
-                    <p ng-show="userForm.subject.$invalid && userForm.subject.$dirty" class="help-block">Subject is required.</p>
+                    <p ng-if="subjectError" class="help-block"> {{ subjectError }} </p>
                 </div>
 
                 <!-- Message Body -->
-                <div class="form-group" ng-class="{'has-error' : userForm.message.$invalid && userForm.message.$dirty}">
+                <div class="form-group" ng-class="{'has-error' : messageError}">
                     <label class="control-label">*Message Body</label>
-                    <textarea class="form-control" name="message" rows="4" cols="50" ng-model="user.message" ng-minlength="4" ng-maxlength="255"></textarea>
-                    <p ng-show="userForm.message.$error.minlength && userForm.message.$dirty" class="help-block">Message must be at least 3 characters.</p>
-                    <p ng-show="userForm.message.$error.maxlength && userForm.message.$dirty" class="help-block">Message must be at most 255 characters.</p>
+                    <textarea class="form-control" name="message" rows="4" cols="50" ng-model="user.message" ng-minlength="4" ng-maxlength="255"
+                        required></textarea>
+                    <p ng-if="messageError" class="help-block"> {{ messageError }} </p>
                 </div>
 
                 <!-- SUBMIT BUTTON -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invali" ng-click="validateForm()">Submit</button>
                 </div>
 
             </form>
+
+            <!-- SUCCESS MESSAGE -->
+            <div ng-if="submitted">
+                <div class="alert alert-success">
+                    {{ successMessage }}
+                </div>
+            </div>
         </div>
         <!-- col-sm-8 -->
     </div>
