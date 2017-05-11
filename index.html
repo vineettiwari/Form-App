@@ -1,30 +1,37 @@
-<!-- index.html -->
+<!--
+    index.html 
+-->
+
 <!DOCTYPE html>
 <html>
 
 <head>
     <title>User Form | Vineet</title>
+    
     <!-- CSS ===================== -->
-    <!-- load bootstrap -->
+    <!-- LOAD BOOTSTRAP -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <style>
         body {
             padding-top: 30px;
         }
     </style>
+
     <!-- JS ===================== -->
-    <!-- load angular -->
+    <!-- LOAD ANGULAR -->
     <script src="http://code.angularjs.org/1.2.6/angular.js"></script>
     <script src="js/controllers.js"></script>
 </head>
 
-<body ng-app="validationApp" ng-controller="mainController">
+<body ng-app="userFormApp" ng-controller="formController">
     <div class="container">
         <div class="col-sm-8 col-sm-offset-2">
+
             <!-- PAGE HEADER -->
             <div class="page-header">
                 <h1>{{ title }}</h1>
             </div>
+
             <!-- FORM -->
             <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
 
@@ -42,17 +49,16 @@
                     <p ng-if="subjectError" class="help-block"> {{ subjectError }} </p>
                 </div>
 
-                <!-- Message Body -->
+                <!-- MESSAGE BODY -->
                 <div class="form-group" ng-class="{'has-error' : messageError}">
                     <label class="control-label">*Message Body</label>
-                    <textarea class="form-control" name="message" rows="4" cols="50" ng-model="user.message" ng-minlength="4" ng-maxlength="255"
-                        required></textarea>
+                    <textarea class="form-control" name="message" rows="4" cols="50" ng-model="user.message" ng-minlength="4"   ng-maxlength="255" required></textarea>
                     <p ng-if="messageError" class="help-block"> {{ messageError }} </p>
                 </div>
 
                 <!-- SUBMIT BUTTON -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invali" ng-click="validateForm()">Send Email</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invali">Send Email</button>
                 </div>
 
             </form>
@@ -63,10 +69,9 @@
                     {{ successMessage }}
                 </div>
             </div>
+
         </div>
-        <!-- col-sm-8 -->
     </div>
-    <!-- /container -->
 </body>
 
 </html>
