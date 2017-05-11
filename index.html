@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Angular Validation | </title>
+    <title>User Form | Vineet</title>
     <!-- CSS ===================== -->
     <!-- load bootstrap -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
@@ -30,7 +30,7 @@
 
                 <!-- EMAIL -->
                 <div class="form-group" ng-class="{'has-error' : emailError}">
-                    <label class="control-label">*Email</label>
+                    <label class="control-label">*Contact Email</label>
                     <input type="email" name="email" class="form-control" ng-model="user.email" ng-trim="true" required>
                     <p ng-if="emailError" class="help-block">{{ emailError }}</p>
                 </div>
@@ -52,7 +52,7 @@
 
                 <!-- SUBMIT BUTTON -->
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invali" ng-click="validateForm()">Submit</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invali" ng-click="validateForm()">Send Email</button>
                 </div>
 
             </form>
