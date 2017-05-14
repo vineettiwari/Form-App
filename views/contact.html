@@ -1,0 +1,48 @@
+<!--
+    contact.html 
+-->
+
+<div class="container jumbotron" ng-controller="contactController">
+    <div class="col-sm-8 col-sm-offset-2">
+
+        <!-- FORM -->
+        <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+
+            <!-- EMAIL -->
+            <div class="form-group" ng-class="{'has-error' : emailError}">
+                <label class="control-label">*Contact Email</label>
+                <input type="email" name="email" class="form-control" ng-model="user.email" ng-trim="true" required>
+                <p ng-if="emailError" class="help-block">{{ emailError }}</p>
+            </div>
+
+            <!-- SUBJECT -->
+            <div class="form-group" ng-class="{'has-error' : subjectError}">
+                <label class="control-label">*Subject</label>
+                <input type="text" name="subject" class="form-control" ng-model="user.subject" required>
+                <p ng-if="subjectError" class="help-block"> {{ subjectError }} </p>
+            </div>
+
+            <!-- MESSAGE BODY -->
+            <div class="form-group" ng-class="{'has-error' : messageError}">
+                <label class="control-label">*Message Body</label>
+                <textarea class="form-control" name="message" rows="4" cols="50" ng-model="user.message" ng-minlength="4" ng-maxlength="255"
+                    required></textarea>
+                <p ng-if="messageError" class="help-block"> {{ messageError }} </p>
+            </div>
+
+            <!-- SUBMIT BUTTON -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invali">Send Email</button>
+            </div>
+
+        </form>
+
+        <!-- SUCCESS MESSAGE -->
+        <div ng-if="submitted">
+            <div class="alert alert-success">
+                {{ successMessage }}
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,12 +1,57 @@
 /*
-    controllers.js 
+    script.js 
  */
 
-// USER FORM APP
-var userFormApp = angular.module('userFormApp', []);
+/* MODULE */
+var formApp = angular.module('formApp', ['ngRoute']);
 
-// USER FORM SERVICE
-userFormApp.service("userFormService", function () {
+/* ROUTE CONFIG */
+formApp.config(function ($routeProvider, $locationProvider) {
+
+    $routeProvider
+
+        /* ROUTE FOR HOME PAGE */
+        .when('/', {
+            templateUrl: 'views/home.html',
+            controller: 'mainController'
+        })
+
+        /* ROUTE FOR ABOUT PAGE */
+        .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'aboutController'
+        })
+
+        /* ROUTE FOR CONTACT PAGE */
+        .when('/contact', {
+            templateUrl: 'views/contact.html',
+            controller: 'contactController'
+        })
+
+        .otherwise({ redirectTo: '/' });
+
+});
+
+/* MAIN CONTROLLER */
+formApp.controller('mainController', function ($scope) {
+    $scope.message = "This is the Home page.";
+});
+
+/* ABOUT CONTROLLER */
+formApp.controller('aboutController', function ($scope) {
+    $scope.message = "This is the About page";
+});
+
+/* CONTACT CONTROLLER */
+formApp.controller('contactController', function ($scope) {
+    $scope.message = "This is the Contact page";
+});
+
+
+
+
+// FORM SERVICE
+formApp.service("formService", function () {
 
     this.getSuccessMessage = function (userEmail) {
         var successMessage = "Your message has been delivered to " + userEmail;
@@ -16,10 +61,10 @@ userFormApp.service("userFormService", function () {
 });
 
 // USER FORM CONTROLLER
-userFormApp.controller('formController', function ($scope, userFormService) {
+formApp.controller('contactController', function ($scope, formService) {
 
     // INITIALIZE VARIABLES
-    $scope.title = "User Form";
+    $scope.title = "";
 
     $scope.emailError = "";
     $scope.subjectError = "";
@@ -44,7 +89,7 @@ userFormApp.controller('formController', function ($scope, userFormService) {
 
             var email = $scope.userForm.email.$modelValue;
 
-            $scope.successMessage = userFormService.getSuccessMessage(email);
+            $scope.successMessage = formService.getSuccessMessage(email);
             console.log($scope.successMessage);
 
             $scope.submitted = true;

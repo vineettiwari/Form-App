@@ -3,75 +3,63 @@
 -->
 
 <!DOCTYPE html>
-<html>
+<html ng-app="formApp">
 
 <head>
-    <title>User Form | Vineet</title>
-    
+    <title>Form App | Vineet</title>
+
     <!-- CSS ===================== -->
     <!-- LOAD BOOTSTRAP -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
     <style>
         body {
-            padding-top: 30px;
+            padding: 50px;
         }
     </style>
 
     <!-- JS ===================== -->
     <!-- LOAD ANGULAR -->
-    <script src="http://code.angularjs.org/1.2.6/angular.js"></script>
-    <script src="js/controllers.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+
+    <script src="js/script.js"></script>
 </head>
 
-<body ng-app="userFormApp" ng-controller="formController">
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
+<!--<body ng-app="userFormApp" ng-controller="formController">-->
 
-            <!-- PAGE HEADER -->
-            <div class="page-header">
-                <h1>{{ title }}</h1>
+<body ng-controller="mainController">
+
+    <!-- HEADER AND NAVBAR -->
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">FORM APP</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- HOME PAGE LINK -->
+                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+
+                    <!-- ABOUT PAGE LINK -->
+                    <li><a href="#about"><i class="fa fa-shield"></i> About</a></li>
+
+                    <!-- CONTACT PAGE LINK -->
+                    <li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+                </ul>
             </div>
+        </nav>
+    </header>
 
-            <!-- FORM -->
-            <form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="main">
+        
+        <!-- ANGULAT TEMPLATE -->
+        <div ng-view></div>
 
-                <!-- EMAIL -->
-                <div class="form-group" ng-class="{'has-error' : emailError}">
-                    <label class="control-label">*Contact Email</label>
-                    <input type="email" name="email" class="form-control" ng-model="user.email" ng-trim="true" required>
-                    <p ng-if="emailError" class="help-block">{{ emailError }}</p>
-                </div>
-
-                <!-- SUBJECT -->
-                <div class="form-group" ng-class="{'has-error' : subjectError}">
-                    <label class="control-label">*Subject</label>
-                    <input type="text" name="subject" class="form-control" ng-model="user.subject" required>
-                    <p ng-if="subjectError" class="help-block"> {{ subjectError }} </p>
-                </div>
-
-                <!-- MESSAGE BODY -->
-                <div class="form-group" ng-class="{'has-error' : messageError}">
-                    <label class="control-label">*Message Body</label>
-                    <textarea class="form-control" name="message" rows="4" cols="50" ng-model="user.message" ng-minlength="4"   ng-maxlength="255" required></textarea>
-                    <p ng-if="messageError" class="help-block"> {{ messageError }} </p>
-                </div>
-
-                <!-- SUBMIT BUTTON -->
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invali">Send Email</button>
-                </div>
-
-            </form>
-
-            <!-- SUCCESS MESSAGE -->
-            <div ng-if="submitted">
-                <div class="alert alert-success">
-                    {{ successMessage }}
-                </div>
-            </div>
-
-        </div>
     </div>
+
 </body>
 
 </html>
